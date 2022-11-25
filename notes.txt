@@ -1,0 +1,104 @@
+
+Important Linux Terminal Commands:
+
+wall (write all) - Command to display a message on the terminal of all logged in users.
+
+	Syntax: wall [OPTIONS] [<FILE>|<MESSAGE>]
+
+cron (Job Scheduler) - Utility to run commands or scripts at scheduled times
+
+	Driven by crontab (cron table) configuration file.
+
+	Syntax: # * * * * * <command to execute>
+
+	Each asterisk represents a time unit. From left to right:
+
+	- Minute (0-59)
+	- Hour (0-23)
+	- Day of the Month (1-31)
+	- Month (1-12)
+	- Day of the Week (0-6) (7 can be sunday on some machines)
+
+
+
+
+
+	UTILITIES:
+
+	https://techsupportwhale.com/make-virtualbox-full-screen/
+
+
+	https://techencyclopedia.wordpress.com/2020/04/21/debian-10-manual-partition-for-boot-swap-root-home-tmp-srv-var-var-mail-var-log/
+
+	Disable Root Login SSH
+	https://www.tecmint.com/disable-ssh-root-login-in-linux/
+
+	How to Set PATH Variable
+	https://opensource.com/article/17/6/set-path-linux
+
+	Setup UFW Firewall
+	https://linuxize.com/post/how-to-setup-a-firewall-with-ufw-on-debian-10/
+
+	Strong Password Policy
+	https://ostechnix.com/force-users-use-strong-passwords-debian-ubuntu/
+
+		- File to edit password settings: /etc/pam.d/common-password
+		- pam_cracklib configuration: man pam_cracklib
+
+	Create Groups/Add Users to Group
+	https://www.ibm.com/docs/en/ibm-mq/9.1?topic=windows-creating-managing-groups-linux
+
+	Password Expiration and Aging
+	https://www.tecmint.com/manage-user-password-expiration-and-aging-in-linux/
+	https://www.thegeekstuff.com/2009/04/chage-linux-password-expiration-and-aging/
+	https://www.cyberciti.biz/tips/linux-set-default-password-expiry-for-all-new-users.html
+
+		- File to set aging settings for all new users: /etc/login.defs
+
+
+
+	SUDO activity logging file: SULOG_FILE /var/log/sulog??
+
+	CHange SUDO log file
+	https://ostechnix.com/how-to-change-default-sudo-log-file-in-linux/
+
+	Custom Message on Wrong SUDO Password
+	https://www.tecmint.com/sudo-insult-when-enter-wrong-password/
+
+	Require TTY for SUDO
+	https://www.shell-tips.com/linux/sudo-sorry-you-must-have-a-tty-to-run-sudo/
+
+
+	Install wordpress
+	https://www.cloudways.com/blog/install-wordpress-on-linux/#wordpress-debian
+
+	Basic Login
+	ROOT Password: Z0ric028Z0ric028
+	jgoad pass: Pauline27&Roger99
+
+
+	Guide to Install wordpress
+	https://githubmemory.com/repo/hanshazairi/42-born2beroot
+
+	MariaDB_______
+
+	Database name: jgoad42db
+
+
+
+ADD LVSCAN TO PATH /usr/sbin
+
+https://github.com/HEADLIGHTER/Born2BeRoot-42/blob/main/monitoring.sh
+
+
+CREATE A LIST OF IMPORANT COMMANDS FOR EVALUATION:
+
+How to check sceduled CRONTAB tasks
+	- crontab -u root -l
+
+How to edit CRONTAB tasks
+
+	- crontab -u root -e
+
+Where is PATH Vairable set
+	https://unix.stackexchange.com/questions/227989/complete-view-of-where-the-path-variable-is-set-in-bash
