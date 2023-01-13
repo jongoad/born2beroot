@@ -1,31 +1,39 @@
 BORN2BEROOT EVALUATION NOTES
 
-Link to Evaluation Document
-https://github.com/wshloic/born2beroot_correction/blob/master/correction_born2beroot.pdf
+/********************************/
+/*  What is a virtual machine?  */
+/********************************/
 
-What is a virtual machine?
+A VM is a full system running in a virtual environment on a "Host" system. It uses software emulation to achieve
+the same functionality of a normal system, and "borrows" access to physical computer hardware from the "Host" system.
+Part of the memory and processing power of the "Host" computer that the VM is running on is allocated for use by the VM. 
+VMs can run basically any OS, regardless of the OS of the "Host" system.
 
-A VM is a full system running in a virtual environemt. It uses software instead of a physical computer
-to run programs etc. Part of the memory and processing power of the "Host" computer that the VM is 
-running on is allocated for use by the VM. VMs can run basically any OS, regardless of the OS of the "Host"
-system.
 
-What is the purpose of a VM?
+/**********************************/
+/*  What is the purpose of a VM?  */
+/**********************************/
 
 A VM allows a number of useful activities, including creating a safe test environments for developing software,
 running multiple different operating environments on a single machine, creating multiple server instances on a
 single machine, and much more. They allow a high degree of flexibility without needed to posess the equipment to run
 all of these things physically.
 
-How does a VM work?
 
-A VM used virtualization to simulate the physical properties of a system (memory, processor, memory-width. etc). This
+/**********************************/
+/*      How does a VM work?       */
+/**********************************/
+
+A VM uses virtualization to simulate the physical properties of a system (memory, processor, memory-width. etc). This
 allows for a new "sub" system to be installed on the physical system. From the perspective of the VM, there is no difference
-between itself and a physically intalled system in terms of functionality.
+between itself and a physically installed system in terms of functionality.
 
-What is the difference between Debian and CentOS?
 
-Both are distributions of linux, that is to say they are operating systems based on the linux kernal. This means that 
+/*******************************************************/
+/*  What is the difference between Debian and CentOS?  */
+/*******************************************************/
+
+Both are distributions of linux, that is to say they are operating systems based on the linux kernel. This means that 
 the vast majority of their workings and components are nearly identical. However, the main differences are as follows:
 
 CentOS
@@ -38,149 +46,148 @@ long maintenance period (about 10 years), so they can run reliably for a very lo
 - Better for enterprise or server deployments.
 
 Debian:
-- Rapid development and quick releases make debian more able to support the newest standards and technologies. Howver
+- Rapid development and quick releases make debian more able to support the newest standards and technologies. However
 this means it is difficult to maintain large systems deployed on debian.
 - It is very easy to upgrade between major versions of Debian.
-- Has a good desktop atmopshere and GUI, allowing it to more easily be run without the use of command line.
+- Has a good desktop atmopsphere and GUI, allowing it to more easily be run without the use of command line.
 - Has many packages available and is more customizeable in respect to system architecture.
 - Better for individual systems and development with current technologies.
 
-Aptitude vs. Apt (Advanced Packaging Tool)?
 
-Aptitude and Apt are both package managers. The main difference is the Aptitude is higher level, meaning is can be used
-with a GUI, and is able to support management of dependancies more easily. Apt is lightweight and powerful, but requires
-more knowledge of base systems and linux architecture. Aptitude can be said to have a higher level of abstraction, and
-allows for the use of a number of useful functionalities that are not default in apt, including searching for packages
-from a list, and scheduling automated package actions.
+/******************************************************/
+/*  What is the difference between APT and Aptitude?  */
+/******************************************************/
 
-What is APPArmor?
+Aptitude and Apt(Advanced Packaging Tool) are both package managers. The main difference is the Aptitude is higher level, 
+meaning is can be used with a GUI, and is able to support management of dependancies more easily. Apt is lightweight and 
+powerful, but requires more knowledge of base systems and linux architecture. Aptitude can be said to have a higher level
+of abstraction, and allows for the use of a number of useful functionalities that are not default in apt, including 
+searching for packages from a list, and scheduling automated package actions.
+
+
+/***********************/
+/*  What is APPArmor?  */
+/***********************/
 
 APPArmor is a linux kernel security module that allows the controlling of access at a per-program level. This means that
 access to all types of system resources can be managed safely to prevent security vulnerabilites from being exposed. This
 is done using per-program profiles that are specified using a file-path. Profiles can allow capabilities like network 
 access, raw socket access, and the permission to read, write, or execute files on matching paths.
 
-Need to allow port 80 and port 21 before bonus section
+____________________________________________________________________________________________________________________________
 
 
-IMPORTANT COMMANDS:
+/**********************/
+/* IMPORTANT COMMANDS */
+/**********************/
 
 Unpack signature on macOS
-- shasum *.vdi
+    - shasum *.vdi (run inside the folder that holds the .vdi file)
+    - This will take quite a while to run.
 
-Create a user for evaluator and add to sudo
-- sudo useradd #name
-- sudo useradd -G user42,sudo #name
+Create a new user
+	- sudo adduser [username]
 
-OR
-
-- sudo adduser
-
-Add a new group
-- sudo groupadd #newgroup
+Create a new group
+    - sudo groupadd [groupname]
 
 Add a user to a group
-- sudo usermod -a -G #groupname #username
+    - sudo adduser [username] [groupname]
 
 Check the groups of a Users
-- id username
-- groups
+    - id [username]
+		OR
+    - groups
 
-Check UFW status/modify ufw
-- sudo ufw status
-- sudo ufw allow #portnumber
-- sudo ufw delete #rulenumber
+Show members of a group
+	- getent group [groupname]
+
+Check password details for a user
+	- sudo chage -l [username]
+
+Check Password Policy (depending on how the password restrictions were set up)
+	- sudo cat /etc/pam.d/common-password
+	- sudo cat /etc/login.defs
+
+Check UFW status and modify ufw settings
+    - sudo ufw status
+    - sudo ufw allow [portnumber]
+	- sudo ufw deny [portnumber]
+    - sudo ufw delete [rulenumber]
 
 Check SSH status (or any other service)
-- sudo service ssh status
+	- sudo service ssh status
 
 Check the Operating system
-- uname -A
+	- uname -A
 
 Get a list of users
-- This is easily found by looking in /etc/passwd
-- Can use "getent" command to display in terminal as well
+	- sudo cat /etc/passwd
+		OR
+	- getent passwd
+	- Both options will display the same data. Users will be at the bottom of the list
 
 Check Password Policy
-- sudo nano /etc/pam.d/common-password
+	- sudo nano /etc/pam.d/common-password
 
 Check hostname
-- hostname
+	- hostname
 
-Change hostname
-- sudo nano /etc/hostname
-- sudo nano /etc/hosts
+Change hostname and hosts
+	- sudo nano /etc/hostname
+	- sudo nano /etc/hosts
 
 View Partitions
-- lsblk
+	- lsblk
 
-Check SUDO and edit sudo
--sudo visudo /etc/sudoers
+Check SUDO and edit sudoers
+	-sudo visudo /etc/sudoers
 
+Show AppArmor status
+	- sudo aa-status
 
+Connect to CM from host machine via SSH
+	- ssh [username@ipaddress] -p [port]
 
-/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
-| You have to create a new user here.        |
-| $ sudo adduser username                    | <- creating new user (yes (no))
-| $ sudo chage -l username                   | <- Verify password expire info for new user
-| $ sudo adduser username sudo               |
-| $ sudo adduser username user42             | <- assign new user to sudo and user42 groups
-\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
-
-
-                                           ##################################
-                                           #    Part two: What to check?    #
-                                           ##################################
-|***************************************|
-| 1) lsblk                              1 <- Check partitions
-| 2) sudo aa-status                     2 <- AppArmor status
-| 3) getent group sudo                  3 <- sudo group users
-| 4) getent group user42                4 <- user42 group users
-| 5) sudo service ssh status            5 <- ssh status, yep
-| 6) sudo ufw status                    6 <- ufw status
-| 7) ssh username@ipadress -p 4242      7 <- connect to VM from your host (physical) machine via SSH
-| 8) nano /etc/sudoers.d/<filename>     8 <- yes, sudo config file. You can $ ls /etc/sudoers.d first
-| 9) nano /etc/login.defs               9 <- password expire policy
-| 10) nano /etc/pam.d/common-password  10 <- password policy
-| 11) sudo crontab -l 
-
-I think this one need an addition to make it more easy to pass evaluation. So, here we are on our checklist and his commands.
-
-How to change hostname?
-[$sudo nano /etc/hostname]
-
-Where is sudo logs in /var/log/sudo?
-[$cd /var/log/sudo/00/00 && ls]
-You will see a lot of directories with names like 01 2B 9S 4D etc. They contain the logs we need.
-[$ sudo apt update]
-[$ ls]
-Now you see that we have a new directory here.
-[$ cd <nameofnewdirectory> && ls]
-[$ cat log] <- Input log
-[$ cat ttyout] <- Output log
-
-How to add and remove port 8080 in UFW?
-[$ sudo ufw allow 8080] <- allow
-[$ sudo ufw status] <- check
-[$ sudo ufw deny 8080] <- deny (yes yes)
-
-How to run script every 30 seconds?
-[$ sudo crontab -e]
-Remove or commit previous cron "schedule" and add next lines in crontab file
-|*************************************************|
-| */1 * * * * /path/to/monitoring.sh              |
-| */1 * * * * sleep 30s && /path/to/monitoring.sh |
-|*************************************************|
-To stop script running on boot you just need to remove or commit
-|********************************|
-| @reboot /path/to/monitoring.sh |
-|********************************|
-line in crontab file.
-
-Temporarily fix /var/log/sudo access problem
-
-sudo chown -R [username] /var/log/sudo
+Access sudo config file
+	- sudo ls /etc/sudoers.d/ <-- Get file name
+	- sudo nano /etc/sudoers.d/[filename] <-- Edit file
 
 
-Kdump information
-https://superuser.com/questions/280767/how-can-i-enable-kernel-crash-dumps-in-debian
+View sudo logs
+	- sudo cd /var/logs/sudo/00/00
+	- sudo ls <-- Display all files
+	- Run a sudo command
+	- run ls again to verify a new folder was created
+	- Check folder contents and view log to verify which command was run
+
+Access crontab scheduler
+	- sudo crontab -l <-- Display crontab file
+	- sudo crontab -e <-- Edit crontab file
+
+Stop script from running on boot
+	- Comment out line that says:
+		@reboot /path/to/monitoring.sh
+
+
+/*************************/
+/*  Further Information  */
+/*************************/
+
+wall (write all) - Command to display a message on the terminal of all logged in users.
+
+	Syntax: wall [OPTIONS] [<FILE>|<MESSAGE>]
+
+cron (Job Scheduler) - Utility to run commands or scripts at scheduled times
+
+	Driven by crontab (cron table) configuration file.
+
+	Syntax: # * * * * * <command to execute>
+
+	Each asterisk represents a time unit. From left to right:
+
+	- Minute (0-59)
+	- Hour (0-23)
+	- Day of the Month (1-31)
+	- Month (1-12)
+	- Day of the Week (0-6) (7 can be sunday on some machines)

@@ -32,6 +32,7 @@ IP_ADR=$(hostname -I)
 MAC_ADR=$(ip link show | awk '$1 == "link/ether" {print $2}')
 SUDO_CNT=$(journalctl -q _COMM=sudo | grep COMMAND | wc -l)
 
+#Write status information to terminal of all users
 wall "	#Architecture: $ARCH
 		#CPU Physical: $PCPU
 		#vCPU: $VCPU
