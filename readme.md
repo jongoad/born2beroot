@@ -16,3 +16,6 @@ The bonus section for this project involves installing the VM with a slightly mo
     - PHP
 
 In addition, another useful service must be selected and installed, and the choice must be justified during evaluation.
+
+## Final Grade
+![125/100](img/125.png)
